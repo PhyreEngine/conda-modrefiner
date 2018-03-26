@@ -1,10 +1,6 @@
 This repository contains a [conda][conda] recipe for building
 [ModRefiner][modrefiner], a tool for protein structure refinement.
 
-This package does *not* include ModRefiner for dimers. This is because of
-difficulties with the version of GSL. It is probably possible to fix this,
-so please open an issue if you need this.
-
 ## Prerequisites
 
 1. You will need an installation of [conda][miniconda].

@@ -1,5 +1,5 @@
 {% set name = "modrefiner" %}
-{% set version = "2017.08.21" %}
+{% set version = "2018.03.22" %}
 
 package:
   name: {{ name | lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://zhanglab.ccmb.med.umich.edu/ModRefiner/ModRefiner-l.zip
-  sha256: edf874c1efda6288808aafee99deefdadbbef8a7580ddf6ad96b96a5a8a88499
+  sha256: d7089ef0d7c17f37b78d92e1b37669e20518c733c52fc099ee5ef477177d7ef1
 
 build:
   number: {{ environ.get("BUILD_NUMBER", 0) }}
@@ -30,6 +30,8 @@ build:
 
     install -d -m755 "$PREFIX/bin"
     install -m755 \
+        dimer_exc/emrefinement_dimer \
+        dimer_exc/mcrefinement_dimer \
         ModRefiner-l/emrefinement \
         ModRefiner-l/mcrefinement \
         "$PREFIX/bin"
