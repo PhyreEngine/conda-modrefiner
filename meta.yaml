@@ -1,0 +1,49 @@
+{% set name = "modrefiner" %}
+{% set version = "2017.08.21" %}
+
+package:
+  name: {{ name | lower }}
+  version: {{ version }}
+
+source:
+  url: https://zhanglab.ccmb.med.umich.edu/ModRefiner/ModRefiner-l.zip
+  sha256: edf874c1efda6288808aafee99deefdadbbef8a7580ddf6ad96b96a5a8a88499
+
+build:
+  number: {{ environ.get("BUILD_NUMBER", 0) }}
+  script: |
+    set -x
+    install -d -m755 "$PREFIX/share/modrefiner/data"
+    install -m644 \
+        ModRefiner-l/bnnewallbinsra \
+        ModRefiner-l/bnprobdof \
+        ModRefiner-l/bnramaprob \
+        ModRefiner-l/data.dat \
+        ModRefiner-l/newsgdistriaanew72.txt \
+        ModRefiner-l/phipsiaass.txt \
+        ModRefiner-l/phipsilogss.txt \
+        ModRefiner-l/prob-phipsi-360.txt \
+        ModRefiner-l/rotamerliballf \
+        ModRefiner-l/sgpolarity5.txt \
+        ModRefiner-l/sgsolve.txt \
+        "$PREFIX/share/modrefiner/data"
+
+    install -d -m755 "$PREFIX/bin"
+    install -m755 \
+        ModRefiner-l/emrefinement \
+        ModRefiner-l/mcrefinement \
+        "$PREFIX/bin"
+
+
+requirements:
+  build:
+  - {{ compiler("c") }}
+  - {{ compiler("cxx") }}
+  host:
+  - libgcc-ng
+  run:
+  - libgcc-ng
+
+about:
+  home: https://zhanglab.ccmb.med.umich.edu/ModRefiner/
+  license: proprietary
